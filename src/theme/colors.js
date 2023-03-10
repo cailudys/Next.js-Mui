@@ -11,6 +11,7 @@ const withAlphas = (color) => {
   };
 };
 
+// 中立色
 export const neutral = {
   50: '#F8F9FA',
   100: '#F3F4F6',
@@ -24,6 +25,7 @@ export const neutral = {
   900: '#111927'
 };
 
+// 靛蓝色
 export const indigo = withAlphas({
   lightest: '#F5F7FF',
   light: '#EBEEFE',

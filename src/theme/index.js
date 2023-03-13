@@ -15,6 +15,10 @@ export function createTheme() {
   const typography = createTypography();
 
   return createMuiTheme({
+    const:{
+      sideNavWidth:280,
+      topNavHight:64
+    },
     breakpoints: {
       values: {
         xs: 0,

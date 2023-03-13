@@ -12,7 +12,7 @@ const MyApp = ({ Component, pageProps }) => {
   return <>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </ThemeProvider>
   </>
 

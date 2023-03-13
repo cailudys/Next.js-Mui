@@ -1,15 +1,85 @@
 import React from 'react'
-import { Drawer, Box } from '@mui/material';
+import { Drawer, Box, Typography, SvgIcon } from '@mui/material';
 import { Scrollbar } from '@/components/scrollbar';
 import { alpha } from '@mui/material/styles';
+import NextLink from 'next/link';
+import { Logo } from 'src/components/logo';
+import ChevronUpDownIcon from '@heroicons/react/24/solid/ChevronUpDownIcon';
+
+
 
 const Page = () => {
+
+  const Content = () => {
+
+    return (<>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%'
+        }}
+      >
+        <Box sx={{
+          p: 3,
+        }}>
+          <Box
+            component={NextLink}
+            href="/"
+            sx={{
+              display: 'inline-flex',
+              height: 32,
+              width: 32
+            }}
+          >
+            <Logo />
+          </Box>
+          <Box
+            sx={{
+              alignItems: 'center',
+              backgroundColor: 'rgba(255, 255, 255, 0.04)',
+              borderRadius: 1,
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'space-between',
+              mt: 2,
+              p: '12px'
+            }}
+          >
+            <div>
+              <Typography
+                color="inherit"
+                variant="subtitle1"
+              >
+                Devias
+              </Typography>
+              <Typography
+                color="neutral.400"
+                variant="body2"
+              >
+                Production
+              </Typography>
+            </div>
+            <SvgIcon
+              fontSize="small"
+              sx={{ color: 'neutral.500' }}
+            >
+              <ChevronUpDownIcon />
+            </SvgIcon>
+          </Box>
+        </Box>
+
+      </Box>
+    </>)
+  }
+
+
   return <>
     <Drawer
       anchor='left'
       PaperProps={{
         sx: {
-          backgroundColor: alpha('#757575',0.8),
+          backgroundColor: 'neutral.800',
           color: 'common.white',
           width: (theme) => theme.const.sideNavWidth,
           height: '100vh'
@@ -33,7 +103,7 @@ const Page = () => {
             flexDirection: 'column',
           }}
         >
-          sideNav
+          <Content />
         </Box>
       </Scrollbar>
     </Drawer>

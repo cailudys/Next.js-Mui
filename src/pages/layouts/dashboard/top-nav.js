@@ -10,7 +10,7 @@ const Page = () => {
                 sx={(theme) => ({
                     backdropFilter: 'blur(6px)',
                     backgroundColor: alpha(theme.palette.background.default, 0.8),
-                    backgroundColor: '#ff3d00',
+                    backgroundColor: alpha('#ff3d00',0.1),
                     position: 'sticky',
                     left: {
                         lg: theme.const.sideNavWidth
@@ -18,7 +18,7 @@ const Page = () => {
                     },
                     top: 0,
                     width: {
-                        lg: `calc(100% - ${theme.const.sideNavWidth}px)`
+                        lg: `calc(100vw - ${theme.const.sideNavWidth}px)`
                     },
                     minHeight: theme.const.topNavHight,
                     zIndex: theme.zIndex.appBar,

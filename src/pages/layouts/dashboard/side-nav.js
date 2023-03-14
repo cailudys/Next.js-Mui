@@ -1,14 +1,29 @@
-import React from 'react'
-import { Drawer, Box, Typography, SvgIcon } from '@mui/material';
-import { Scrollbar } from '@/components/scrollbar';
-import { alpha } from '@mui/material/styles';
 import NextLink from 'next/link';
-import { Logo } from 'src/components/logo';
+import { usePathname } from 'next/navigation';
+import PropTypes from 'prop-types';
+import ArrowTopRightOnSquareIcon from '@heroicons/react/24/solid/ArrowTopRightOnSquareIcon';
 import ChevronUpDownIcon from '@heroicons/react/24/solid/ChevronUpDownIcon';
+import {
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  Stack,
+  SvgIcon,
+  Typography,
+  useMediaQuery
+} from '@mui/material';
+import { Logo } from 'src/components/logo';
+import { Scrollbar } from 'src/components/scrollbar';
+import { items } from './config';
+import { SideNavItem } from './side-nav-item';
 
 
 
 const Page = () => {
+
+  const pathname = usePathname();
+
 
   const Content = () => {
 
@@ -17,7 +32,7 @@ const Page = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100vh'
         }}
       >
         <Box sx={{
@@ -68,7 +83,92 @@ const Page = () => {
             </SvgIcon>
           </Box>
         </Box>
+        <Divider sx={{ borderColor: 'neutral.700' }} />
+        <Box
+          component="nav"
+          sx={{
+            flexGrow: 1,
+            px: 2,
+            py: 3
+          }}
+        >
+          <Stack
+            component="ul"
+            spacing={0.5}
+            sx={{
+              listStyle: 'none',
+              p: 0,
+              m: 0
+            }}
+          >
+            {items.map((item) => {
+              const active = item.path ? (pathname === item.path) : false;
 
+              return (
+                <SideNavItem
+                  active={active}
+                  disabled={item.disabled}
+                  external={item.external}
+                  icon={item.icon}
+                  key={item.title}
+                  path={item.path}
+                  title={item.title}
+                />
+              );
+            })}
+          </Stack>
+        </Box>
+        <Divider sx={{ borderColor: 'neutral.700' }} />
+        <Box
+          sx={{
+            px: 2,
+            py: 3
+          }}
+        >
+          <Typography
+            color="neutral.100"
+            variant="subtitle2"
+          >
+            Need more features?
+          </Typography>
+          <Typography
+            color="neutral.500"
+            variant="body2"
+          >
+            Check out our Pro solution template.
+          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              mt: 2,
+              mx: 'auto',
+              width: '160px',
+              '& img': {
+                width: '100%'
+              }
+            }}
+          >
+            <img
+              alt="Go to pro"
+              src="/assets/devias-kit-pro.png"
+            />
+          </Box>
+          <Button
+            component="a"
+            endIcon={(
+              <SvgIcon fontSize="small">
+                <ArrowTopRightOnSquareIcon />
+              </SvgIcon>
+            )}
+            fullWidth
+            href="https://material-kit-pro-react.devias.io/"
+            sx={{ mt: 2 }}
+            target="_blank"
+            variant="contained"
+          >
+            Pro Live Preview
+          </Button>
+        </Box>
       </Box>
     </>)
   }
@@ -91,6 +191,9 @@ const Page = () => {
         sx={{
           // 这里的height设置的是滚动条容器的高度，Scrollbar的包裹容器的height值应该和这里保持一致，否则有可能导致出现默认的滚动条。
           height: '100vh',
+          '& .simplebar-content': {
+            height: '100vh',
+          },
           // 这里是设置滚动条的颜色
           '& .simplebar-scrollbar:before': {
             background: 'neutral.400'

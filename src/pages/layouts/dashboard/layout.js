@@ -10,18 +10,15 @@ const Page = (props) => {
         <>
             <TopNav />
             <SideNav />
-
             <Box
                 sx={{
                     ml: (theme) => `${theme.const.sideNavWidth}px`,
-                    height: (theme)=> `calc(100vh - ${theme.const.topNavHight}px)`,
-                    backgroundColor: alpha('#98ec65',0.1)
+                    height: (theme) => `calc(100vh - ${theme.const.topNavHight}px)`,
+                    backgroundColor: alpha('#98ec65', 0.1)
                 }}
             >
                 {props.children}
             </Box>
-
-
         </>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from './layouts/dashboard/layout'
+import Layout from '../layouts/dashboard/layout'
 import { Box } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 

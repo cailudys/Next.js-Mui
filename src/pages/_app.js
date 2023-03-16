@@ -2,7 +2,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from 'src/theme';
 import { CssBaseline } from '@mui/material';
 import 'simplebar-react/dist/simplebar.min.css';
+import { AuthConsumer, AuthProvider } from 'src/contexts/auth-context';
 
+const SplashScreen = () => null;
 
 const MyApp = ({ Component, pageProps }) => {
 
@@ -12,11 +14,19 @@ const MyApp = ({ Component, pageProps }) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return <>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <AuthConsumer>
+          {
+            (auth) => auth.isLoading
+              ? <SplashScreen />
+              : getLayout(<Component {...pageProps} />)
+          }
+        </AuthConsumer>
+      </ThemeProvider>
+    </AuthProvider>
 
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {getLayout(<Component {...pageProps} />)}
-    </ThemeProvider>
   </>
 
 }

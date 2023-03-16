@@ -1,26 +1,27 @@
-import PropTypes from 'prop-types';
 import BellIcon from '@heroicons/react/24/solid/BellIcon';
 import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
 import Bars3Icon from '@heroicons/react/24/solid/Bars3Icon';
 import MagnifyingGlassIcon from '@heroicons/react/24/solid/MagnifyingGlassIcon';
 import {
-  Avatar,
-  Badge,
-  Box,
-  IconButton,
-  Stack,
-  SvgIcon,
-  Tooltip,
-  useMediaQuery
+    Avatar,
+    Badge,
+    Box,
+    IconButton,
+    Stack,
+    SvgIcon,
+    Tooltip,
+    useMediaQuery
 } from '@mui/material';
 import { alpha } from '@mui/material/styles';
-import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
+import { usePopover } from 'src/hooks/use-popover';
+
 
 const Page = () => {
 
-  // useMediaQuery 钩子函数返回一个布尔值，用于控制元素是否显示
-  const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+    // useMediaQuery 钩子函数返回一个布尔值，用于控制元素是否显示
+    const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+    const accountPopover = usePopover();
 
 
     return (
@@ -49,7 +50,7 @@ const Page = () => {
                     justifyContent="space-between"
                     spacing={2}
                     sx={{
-                        minHeight: TOP_NAV_HEIGHT,
+                        minHeight: '64px',
                         px: 2
                     }}
                 >
@@ -59,7 +60,7 @@ const Page = () => {
                         spacing={2}
                     >
                         {!lgUp && (
-                            <IconButton onClick={onNavOpen}>
+                            <IconButton onClick={() => { }}>
                                 <SvgIcon fontSize="small">
                                     <Bars3Icon />
                                 </SvgIcon>
@@ -111,6 +112,11 @@ const Page = () => {
                     </Stack>
                 </Stack>
             </Box>
+            <AccountPopover
+                anchorEl={accountPopover.anchorRef.current}
+                open={accountPopover.open}
+                onClose={accountPopover.handleClose}
+            />
         </>
     )
 }
